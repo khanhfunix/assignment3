@@ -1,0 +1,46 @@
+.more {
+  width: 100%;
+  margin-bottom: 50px;
+}
+.moreAds {
+  height: 200px;
+  background-color: #f7f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  font-style: italic;
+}
+
+.moreForm {
+  display: flex;
+  gap: 100px;
+  height: 200px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.moreAds h2,
+.moreForm h2 {
+  font-weight: 400;
+  margin: 0;
+}
+
+.moreAds p,
+.moreForm p {
+  margin: 0;
+  color: #c2bdbd;
+}
+
+.moreForm input {
+  width: 250px;
+
+  padding: 15px 20px 15px 20px;
+  border: 2px solid #c2bdbd;
+}
+
+.moreForm button {
+  color: white;
+  background-color: black;
+  padding: 15px 20px 15px 20px;
+}

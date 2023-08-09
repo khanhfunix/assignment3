@@ -1,0 +1,28 @@
+.categoriesBar {
+  width: 25%;
+  text-align: start;
+  font-style: italic;
+}
+
+.mainMenu h3 {
+  background-color: #dff1f5;
+  padding: 5px 20px 5px 20px;
+  margin: 5px;
+}
+
+.mainMenu p {
+  padding: 5px 20px 5px 20px;
+  margin: 5px;
+}
+
+.mainMenu p:hover {
+  cursor: pointer;
+}
+
+.mainMenu a {
+  text-decoration: none;
+}
+
+.active {
+  color: orange;
+}

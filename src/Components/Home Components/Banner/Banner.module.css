@@ -1,0 +1,36 @@
+.banner {
+  height: 350px;
+  width: 100%;
+  margin-bottom: 50px;
+  background-image: url(banner1.jpg);
+  background-size: 100%;
+}
+
+.bannerContent {
+  width: 300px;
+
+  text-align: start;
+
+  font-style: italic;
+  line-height: 1.2;
+  padding: 100px 0 0 50px;
+}
+
+.bannerContent p {
+  color: #a39f9f;
+
+  margin: 0;
+}
+
+.bannerContent h1 {
+  font-weight: normal;
+  margin: 15px auto;
+  margin-top: 10px;
+}
+
+.bannerContent a {
+  padding: 8px 25px;
+  color: #a39f9f;
+  background-color: black;
+  text-decoration: none;
+}

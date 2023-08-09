@@ -1,0 +1,40 @@
+.products {
+  width: 100%;
+
+  color: #333;
+  font-style: italic;
+  margin-bottom: 50px;
+}
+
+.products h4 {
+  margin: 0;
+
+  color: #c2bdbd;
+  font-weight: normal;
+}
+
+.products h3 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.productsList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 25px;
+  row-gap: 25px;
+}
+
+.productImg {
+  width: 200px;
+  height: auto;
+}
+
+.productImg:hover {
+  opacity: 50%;
+}
+
+.productsText {
+  text-align: start;
+  margin-bottom: 30px;
+}

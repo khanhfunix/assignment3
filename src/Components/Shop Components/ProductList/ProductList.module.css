@@ -1,0 +1,33 @@
+.productsList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 20px;
+  width: 80%;
+}
+
+.productImg {
+  width: 180px;
+  height: auto;
+}
+
+.productImg:hover {
+  opacity: 50%;
+}
+
+.productsText {
+  text-align: start;
+  margin-bottom: 30px;
+}
+
+.productsList h4 {
+  margin: 0;
+
+  color: #c2bdbd;
+  font-weight: normal;
+}
+
+.productsList h3 {
+  margin: 0;
+  font-weight: 500;
+}

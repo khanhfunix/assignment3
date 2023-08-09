@@ -1,0 +1,34 @@
+.categories {
+  width: 100%;
+  margin-bottom: 50px;
+  display: grid;
+  row-gap: 20px;
+}
+
+.flexImg {
+  display: flex;
+  gap: 30px;
+}
+.flexImg img {
+  height: 253px;
+  width: auto;
+}
+
+.flexImg a :hover {
+  opacity: 70%;
+  cursor: default;
+}
+
+.categoriesText {
+  color: #a39f9f;
+  font-style: italic;
+}
+.categoriesText h4 {
+  margin-bottom: 0px;
+  color: #c2bdbd;
+  font-weight: normal;
+}
+
+.categoriesText h3 {
+  margin: 0;
+}

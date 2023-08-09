@@ -1,0 +1,25 @@
+.footer {
+  padding: 30px;
+  width: 100%;
+  background-color: black;
+  color: white;
+
+  display: flex;
+  justify-content: flex-start;
+  gap: 180px;
+  padding-left: 225px;
+}
+.footerList {
+  line-height: 1.5;
+}
+.footerList ul {
+  padding-inline-start: 0px;
+}
+.footerItem {
+  list-style: none;
+}
+
+.footerItem a {
+  text-decoration: none;
+  color: #333;
+}

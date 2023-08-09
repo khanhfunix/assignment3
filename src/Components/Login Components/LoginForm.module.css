@@ -1,0 +1,49 @@
+.LoginForm {
+  height: 100vh;
+  width: 100%;
+
+  background-image: url(banner1.jpg);
+  background-size: 120%;
+
+  display: flex;
+  font-style: italic;
+  color: #c2bdbd;
+}
+
+.form {
+  background-color: white;
+  width: fit-content;
+  margin: auto;
+  text-align: center;
+  padding: 50px 50px;
+}
+
+.form h1 {
+  font-weight: lighter;
+  margin-top: 0;
+}
+
+.form input {
+  margin: 0;
+  padding: 30px 10px;
+  width: 400px;
+  border: #c2bdbd 1px solid;
+}
+
+
+.form button {
+  padding: 20px;
+  width: 420px;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+}
+
+.form button:hover {
+  opacity: 75%;
+  cursor: pointer;
+}
+
+.form a {
+  text-decoration: none;
+}

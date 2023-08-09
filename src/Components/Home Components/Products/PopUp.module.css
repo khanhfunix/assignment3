@@ -1,0 +1,82 @@
+.modalPopUp {
+  /* display: none; */
+  position: fixed;
+  z-index: 1;
+
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.popUp {
+  width: 750px;
+  height: 400px;
+  margin: 9% auto;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  gap: 80px;
+  border: solid 1px black;
+  padding: 0 30px;
+  position: relative;
+}
+
+.popUp img {
+  width: 300px;
+  height: auto;
+}
+
+.popUpContent {
+  height: min-content;
+}
+
+.popUpContent h3,
+.popUpContent h5,
+.popUpContent p,
+.popUpContent button {
+  margin: 5px;
+  text-align: start;
+  font-style: italic;
+}
+
+.popUpContent h3 {
+  color: #333;
+}
+
+.popUpContent h5 {
+  color: #c2bdbd;
+}
+
+.popUpContent p {
+  font-size: 12px;
+}
+
+.btnClose {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  background: none;
+  border: none;
+}
+
+.btnClose:hover {
+  cursor: pointer;
+}
+
+.btnDetail {
+  display: block;
+  margin-top: 10px !important;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+}
+.btnDetail:hover {
+  opacity: 70%;
+}
