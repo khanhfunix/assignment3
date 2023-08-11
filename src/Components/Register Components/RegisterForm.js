@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 import classes from "./RegisterForm.module.css";
 
-import { registerCheckActions } from "../../store/registerCheck";
+import useInput from "../../hook/use-input";
 
 const userArr =
   localStorage.getItem("user") === undefined
@@ -12,92 +11,99 @@ const userArr =
     : [];
 
 function RegisterForm() {
-  const [nameInput, setNameInput] = useState("");
-  const [emailInput, setEmailInput] = useState("");
-  const [passInput, setPassInput] = useState("");
-  const [phoneInput, setPhoneInput] = useState("");
-  const [isVerified, setIsverified] = useState(false);
+  // const [nameInput, setNameInput] = useState("");
+  // const [emailInput, setEmailInput] = useState("");
+  // const [passInput, setPassInput] = useState("");
+  // const [phoneInput, setPhoneInput] = useState("");
 
-  const isNameEmpty = useSelector((state) => state.registerCheck.isNameEmpty);
-  const isEmailEmpty = useSelector((state) => state.registerCheck.isEmailEmpty);
-  const isPhoneEmpty = useSelector((state) => state.registerCheck.isPhoneEmpty);
-  const isPasswordLengthEnough = useSelector(
-    (state) => state.registerCheck.isPasswordLengthEnough
-  );
-  const isEmailUsed = useSelector((state) => state.registerCheck.isEmailUsed);
+  // const [isNameEmpty, setIsNameEmpty] = useState(false);
+  // const [isEmailEmpty, setIsEmailEmpty] = useState(false);
+  // const [isPhoneEmpty, setIsPhoneEmpty] = useState(false);
+  // const [isPasswordLengthNotEnough, setIsPasswordLengthNotEnough] =
+  //   useState(false);
+  // const [isEmailUsed, setIsEmailUsed] = useState(false);
 
-  const dispatch = useDispatch();
+  // const [isVerified, setIsverified] = useState(true);
 
-  const nameChangeHandler = (e) => {
-    setNameInput(e.target.value);
-  };
-  const emailChangeHandler = (e) => {
-    setEmailInput(e.target.value);
-  };
-  const passChangeHandler = (e) => {
-    setPassInput(e.target.value);
-  };
-  const phoneChangeHandler = (e) => {
-    setPhoneInput(e.target.value);
-  };
+  // const nameChangeHandler = (e) => {
+  //   setNameInput(e.target.value);
+  // };
+  // const emailChangeHandler = (e) => {
+  //   setEmailInput(e.target.value);
+  // };
+  // const passChangeHandler = (e) => {
+  //   setPassInput(e.target.value);
+  // };
+  // const phoneChangeHandler = (e) => {
+  //   setPhoneInput(e.target.value);
+  // };
 
-  const clickHandler = (e) => {};
+  const {
+    value: enteredName,
+    isValid: nameIsValid,
+    hasError: nameHasError,
+    valueChangeHandler: nameChangeHandler,
+    inputBlurHandler: nameBlurHandler,
+    reset: resetNameInput,
+  } = useInput((value) => value !== "");
+  const {
+    value: enteredEmail,
+    isValid: emailIsValid,
+    hasError: emailHasError,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetEmailInput,
+  } = useInput((value) => value !== "");
+  const {
+    value: enteredPassword,
+    isValid: passwordIsValid,
+    hasError: passwordHasError,
+    valueChangeHandler: passwordChangeHandler,
+    inputBlurHandler: passwordBlurHandler,
+    reset: resetPasswordInput,
+  } = useInput((value) => value.length >= 8);
+  const {
+    value: enteredPhone,
+    isValid: phoneIsValid,
+    hasError: phoneHasError,
+    valueChangeHandler: phoneChangeHandler,
+    inputBlurHandler: phoneBlurHandler,
+    reset: resetPhoneInput,
+  } = useInput((value) => value !== "");
 
-  const submitHandler = (e) => {
+  let formIsValid = false;
+
+  if (nameIsValid && emailIsValid && passwordIsValid && phoneIsValid) {
+    formIsValid = true;
+  }
+
+  const formSubmitHandler = (e) => {
     e.preventDefault();
 
-    nameInput === ""
-      ? dispatch(registerCheckActions.nameIsEmpty())
-      : dispatch(registerCheckActions.nameIsNotEmpty());
-    emailInput === ""
-      ? dispatch(registerCheckActions.emailIsEmpty())
-      : dispatch(registerCheckActions.emailIsNotEmpty());
-    phoneInput === ""
-      ? dispatch(registerCheckActions.phoneIsEmpty())
-      : dispatch(registerCheckActions.phoneIsNotEmpty());
-    passInput.length < 8
-      ? dispatch(registerCheckActions.passwordNotVerified())
-      : dispatch(registerCheckActions.passwordVerifed());
-    dispatch(registerCheckActions.emailNotUsed());
-
-    for (let i = 0; i < userArr.length; i++) {
-      if (emailInput === userArr[i].email) {
-        dispatch(registerCheckActions.emailUsed());
-
-        break;
-      }
+    if (!formIsValid) {
+      return;
     }
-    !isNameEmpty &&
-      !isPhoneEmpty &&
-      !isEmailEmpty &&
-      !isPasswordLengthEnough &&
-      !isEmailUsed &&
-      setIsverified(true);
-    console.log(
-      isNameEmpty,
-      isEmailEmpty,
-      isPhoneEmpty,
-      isPasswordLengthEnough,
-      isEmailUsed,
-      isVerified
-    );
-    let newUser = {
-      name: nameInput,
-      email: emailInput,
-      password: passInput,
-      phone: phoneInput,
-    };
-
-    isVerified && userArr.push(newUser);
-    console.log(userArr);
-    localStorage.setItem("user", userArr);
-
-    setIsverified(false);
+    console.log("nice");
+    resetNameInput();
+    resetEmailInput();
+    resetPasswordInput();
+    resetPhoneInput();
   };
+
+  // let newUser = {
+  //   name: nameInput,
+  //   email: emailInput,
+  //   password: passInput,
+  //   phone: phoneInput,
+  // };
+
+  // userArr.push(newUser);
+  // console.log(userArr);
+  // localStorage.setItem("user", userArr);
 
   return (
     <div className={classes.RegisterForm}>
-      <form onSubmit={submitHandler} className={classes.form}>
+      <form onSubmit={formSubmitHandler} className={classes.form}>
         <h1>Sign Up</h1>
         <div>
           <input
@@ -105,10 +111,11 @@ function RegisterForm() {
             type="text"
             id="name"
             onChange={nameChangeHandler}
-            value={nameInput}
+            onBlur={nameBlurHandler}
+            value={enteredName}
           ></input>
           <label htmlFor="name"></label>
-          {isNameEmpty && (
+          {nameHasError === true && (
             <p className={classes.errorText}>Name must not be empty</p>
           )}
         </div>
@@ -118,28 +125,30 @@ function RegisterForm() {
             type="email"
             id="email"
             onChange={emailChangeHandler}
-            value={emailInput}
+            onBlur={emailBlurHandler}
+            value={enteredEmail}
           ></input>
           <label htmlFor="email"></label>
-          {isEmailEmpty && (
+          {emailHasError && (
             <p className={classes.errorText}>Email must not be empty</p>
           )}
-          {isEmailUsed && (
+          {/* {isEmailUsed && (
             <p className={classes.errorText}>
               Email has been used! Please choose another Email!!
             </p>
-          )}
+          )} */}
         </div>
         <div>
           <input
             placeholder="Password"
             type="password"
             id="pass"
-            onChange={passChangeHandler}
-            value={passInput}
+            onChange={passwordChangeHandler}
+            onBlur={passwordBlurHandler}
+            value={enteredPassword}
           ></input>
           <label htmlFor="pass"></label>
-          {isPasswordLengthEnough && (
+          {passwordHasError && (
             <p className={classes.errorText}>
               Password must have more than 8 character
             </p>
@@ -151,15 +160,16 @@ function RegisterForm() {
             type="number"
             id="phone"
             onChange={phoneChangeHandler}
-            value={phoneInput}
+            onBlur={phoneBlurHandler}
+            value={enteredPhone}
           ></input>
           <label htmlFor="phone"></label>
-          {isPhoneEmpty && (
+          {phoneHasError && (
             <p className={classes.errorText}>Phone Number must not be empty</p>
           )}
         </div>
 
-        <button onClick={clickHandler}>SIGN UP</button>
+        <button disabled={!formIsValid}>SIGN UP</button>
         <p>
           Login? <Link to="/login">Click</Link>
         </p>
