@@ -26,8 +26,8 @@ function App() {
       ],
     },
 
-    { path: "checkout", element: <CheckoutPage /> },
-    { path: "detail/:productId", element: <DetailPage /> },
+    { path: "/checkout", element: <CheckoutPage /> },
+    { path: "/detail/:productId", element: <DetailPage /> },
   ]);
 
   return <RouterProvider className="App" router={router}></RouterProvider>;

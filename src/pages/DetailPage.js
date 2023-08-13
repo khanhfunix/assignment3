@@ -1,5 +1,11 @@
+import Detail from "../Components/Detail Components/Detail";
+
 function DetailPage() {
-  return <h1>DetailPage</h1>;
+  return (
+    <>
+      <Detail />
+    </>
+  );
 }
 
 export default DetailPage;

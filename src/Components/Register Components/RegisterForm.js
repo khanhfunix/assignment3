@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import classes from "./RegisterForm.module.css";
@@ -6,38 +6,11 @@ import classes from "./RegisterForm.module.css";
 import useInput from "../../hook/use-input";
 
 const userArr =
-  localStorage.getItem("user") === undefined
-    ? localStorage.getItem("user")
+  JSON.parse(localStorage.getItem("user")) === undefined
+    ? JSON.parse(localStorage.getItem("user"))
     : [];
 
 function RegisterForm() {
-  // const [nameInput, setNameInput] = useState("");
-  // const [emailInput, setEmailInput] = useState("");
-  // const [passInput, setPassInput] = useState("");
-  // const [phoneInput, setPhoneInput] = useState("");
-
-  // const [isNameEmpty, setIsNameEmpty] = useState(false);
-  // const [isEmailEmpty, setIsEmailEmpty] = useState(false);
-  // const [isPhoneEmpty, setIsPhoneEmpty] = useState(false);
-  // const [isPasswordLengthNotEnough, setIsPasswordLengthNotEnough] =
-  //   useState(false);
-  // const [isEmailUsed, setIsEmailUsed] = useState(false);
-
-  // const [isVerified, setIsverified] = useState(true);
-
-  // const nameChangeHandler = (e) => {
-  //   setNameInput(e.target.value);
-  // };
-  // const emailChangeHandler = (e) => {
-  //   setEmailInput(e.target.value);
-  // };
-  // const passChangeHandler = (e) => {
-  //   setPassInput(e.target.value);
-  // };
-  // const phoneChangeHandler = (e) => {
-  //   setPhoneInput(e.target.value);
-  // };
-
   const {
     value: enteredName,
     isValid: nameIsValid,
@@ -79,27 +52,29 @@ function RegisterForm() {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-
     if (!formIsValid) {
       return;
     }
-    console.log("nice");
+    for (let i = 0; i < userArr.length; i++) {
+      if (enteredEmail === userArr[i].email) {
+        window.alert("Email has been taken! Please choose another Email");
+        return;
+      }
+    }
+    let newUser = {
+      name: enteredName,
+      email: enteredEmail,
+      password: enteredPassword,
+      phone: enteredPhone,
+    };
+    userArr.push(newUser);
+    console.log(userArr);
+    localStorage.setItem("user", JSON.stringify(userArr));
     resetNameInput();
     resetEmailInput();
     resetPasswordInput();
     resetPhoneInput();
   };
-
-  // let newUser = {
-  //   name: nameInput,
-  //   email: emailInput,
-  //   password: passInput,
-  //   phone: phoneInput,
-  // };
-
-  // userArr.push(newUser);
-  // console.log(userArr);
-  // localStorage.setItem("user", userArr);
 
   return (
     <div className={classes.RegisterForm}>
@@ -132,11 +107,6 @@ function RegisterForm() {
           {emailHasError && (
             <p className={classes.errorText}>Email must not be empty</p>
           )}
-          {/* {isEmailUsed && (
-            <p className={classes.errorText}>
-              Email has been used! Please choose another Email!!
-            </p>
-          )} */}
         </div>
         <div>
           <input
@@ -168,8 +138,9 @@ function RegisterForm() {
             <p className={classes.errorText}>Phone Number must not be empty</p>
           )}
         </div>
-
-        <button disabled={!formIsValid}>SIGN UP</button>
+        <Link to="/login">
+          <button disabled={!formIsValid}>SIGN UP</button>
+        </Link>
         <p>
           Login? <Link to="/login">Click</Link>
         </p>

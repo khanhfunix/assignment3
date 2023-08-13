@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import classes from "./ProductList.module.css";
+import { Link } from "react-router-dom";
 
 function ProductList() {
   const [product, setProduct] = useState([]);
@@ -40,11 +41,15 @@ function ProductList() {
     <div className={classes.productsList}>
       {product.map((p) => {
         return (
-          <div className={classes.productsItem} key={p._id.$oid}>
+          <Link
+            to={`/detail/${p._id.$oid}`}
+            className={classes.productsItem}
+            key={p._id.$oid}
+          >
             <img className={classes.productImg} src={p.img1} alt={p.name}></img>
             <h3>{p.name}</h3>
             <h4>{Number(p.price).toLocaleString("de-DE")}</h4>
-          </div>
+          </Link>
         );
       })}
     </div>

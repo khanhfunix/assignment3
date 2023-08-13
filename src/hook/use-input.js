@@ -12,7 +12,7 @@ const inputStateReducer = (state, action) => {
       isTouched: state.isTouched,
     };
   }
-  if (action.type === "BlUR") {
+  if (action.type === "BLUR") {
     return {
       value: state.value,
       isTouched: true,
@@ -47,6 +47,7 @@ const useInput = (validateValue) => {
   const reset = () => {
     dispatch({ type: "RESET" });
   };
+  console.log();
   return {
     value: inputState.value,
     isValid: valueIsValid,
