@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import classes from "./Detail.module.css";
 
 function Detail() {
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState();
   const id = useParams().productId;
   useEffect(() => {
     const fetchProduct = async () => {
@@ -18,14 +18,24 @@ function Detail() {
 
         const data = await response.json();
         console.log(data);
+        for (let i = 0; i < data.length; i++) {
+          if (id === data[i]._id.$oid) {
+            setProduct(data[i]);
+          }
+        }
       } catch (error) {
         console.log(error);
       }
     };
     fetchProduct();
-  }, []);
+  });
+  console.log(product);
 
-  return <h1>Content</h1>;
+  return (
+    <div className={classes.DetailContent}>
+      <h1>{product.category}</h1>
+    </div>
+  );
 }
 
 export default Detail;
