@@ -1,13 +1,34 @@
 import classes from "./NavBar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCartShopping,
+  faUser,
+  faCaretDown,
+} from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logActions } from "../../store/userlog";
+
+let activeUser = localStorage.getItem("active")
+  ? JSON.parse(localStorage.getItem("active"))
+  : {};
+
 function NavBar() {
+  const dispatch = useDispatch();
+  const isLogged = useSelector((state) => state.log.isLogged);
+  console.log(isLogged);
+  console.log(activeUser);
+
+  const logoutHandler = () => {
+    dispatch(logActions.logOut());
+    localStorage.removeItem("active");
+  };
+
   return (
     <header className={classes.header}>
       <nav className={classes.nav}>
         <ul className={classes.list}>
-          <li>
+          <li className={classes.navItem}>
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -18,7 +39,7 @@ function NavBar() {
               Home
             </NavLink>
           </li>
-          <li>
+          <li className={classes.navItem}>
             <NavLink
               to="/shop"
               className={({ isActive }) =>
@@ -31,7 +52,7 @@ function NavBar() {
         </ul>
         <h1>Boutique</h1>
         <ul className={classes.list}>
-          <li>
+          <li className={classes.navItem}>
             <NavLink
               to="/cart"
               className={({ isActive }) =>
@@ -42,16 +63,26 @@ function NavBar() {
               <p>Cart</p>
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/register"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-            >
-              <FontAwesomeIcon icon={faUser} />
-              <p>Login</p>
-            </NavLink>
+          <li className={classes.navItem}>
+            {!isLogged && (
+              <NavLink
+                to="/register"
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+              >
+                <FontAwesomeIcon icon={faUser} />
+                <p>Login</p>
+              </NavLink>
+            )}
+            {isLogged && (
+              <div>
+                <FontAwesomeIcon icon={faUser} />
+                <p>{activeUser.name}</p>
+                <FontAwesomeIcon icon={faCaretDown} />
+                <button onClick={logoutHandler}>( Logout )</button>
+              </div>
+            )}
           </li>
         </ul>
       </nav>

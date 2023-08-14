@@ -1,16 +1,17 @@
 import { useEffect } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classes from "./RegisterForm.module.css";
 
 import useInput from "../../hook/use-input";
 
-const userArr =
-  JSON.parse(localStorage.getItem("user")) === undefined
-    ? JSON.parse(localStorage.getItem("user"))
-    : [];
+const userArr = localStorage.getItem("user")
+  ? JSON.parse(localStorage.getItem("user"))
+  : [];
 
 function RegisterForm() {
+  const navigate = useNavigate();
+
   const {
     value: enteredName,
     isValid: nameIsValid,
@@ -49,7 +50,7 @@ function RegisterForm() {
   if (nameIsValid && emailIsValid && passwordIsValid && phoneIsValid) {
     formIsValid = true;
   }
-
+  
   const formSubmitHandler = (e) => {
     e.preventDefault();
     if (!formIsValid) {
@@ -68,12 +69,13 @@ function RegisterForm() {
       phone: enteredPhone,
     };
     userArr.push(newUser);
-    console.log(userArr);
+    console.log("userArr", userArr);
     localStorage.setItem("user", JSON.stringify(userArr));
     resetNameInput();
     resetEmailInput();
     resetPasswordInput();
     resetPhoneInput();
+    navigate("/login");
   };
 
   return (
@@ -138,9 +140,9 @@ function RegisterForm() {
             <p className={classes.errorText}>Phone Number must not be empty</p>
           )}
         </div>
-        <Link to="/login">
-          <button disabled={!formIsValid}>SIGN UP</button>
-        </Link>
+
+        <button disabled={!formIsValid}>SIGN UP</button>
+
         <p>
           Login? <Link to="/login">Click</Link>
         </p>

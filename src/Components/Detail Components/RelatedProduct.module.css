@@ -1,0 +1,22 @@
+.relatedProduct img:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
+.relatedProduct {
+  display: flex;
+  gap: 30px;
+  text-align: center;
+}
+.relatedProduct img {
+  width: 200px;
+  height: 200px;
+}
+
+.relatedProduct h5 {
+  width: 200px;
+  margin: 0;
+}
+.relatedProduct p {
+  margin: 0;
+}

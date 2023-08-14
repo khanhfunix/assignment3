@@ -1,5 +1,5 @@
 .LoginForm {
-  height: 100vh;
+  height: 120vh;
   width: 100%;
 
   background-image: url(banner1.jpg);
@@ -29,7 +29,6 @@
   width: 400px;
   border: #c2bdbd 1px solid;
 }
-
 
 .form button {
   padding: 20px;

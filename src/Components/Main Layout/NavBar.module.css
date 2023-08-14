@@ -30,8 +30,30 @@
   text-decoration: none;
 }
 
-.list li :first-child {
+.navItem {
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.navItem :first-child {
+  display: flex;
+  align-items: center;
+}
+
+.navItem p {
+  margin: 0 5px;
+}
+
+.navItem button {
+  margin-left: 7px;
+  border: none;
+  padding: none;
+  background-color: inherit;
+  font-style: italic;
+  font-size: inherit;
+}
+
+.navItem button:hover {
+  cursor: pointer;
 }

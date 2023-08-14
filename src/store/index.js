@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import showReducer from "./showPopUp";
 import categorieReducer from "./categorie";
-import registerCheckReducer from "./registerCheck";
+import logReducer from "./userlog";
+import cartReducer from "./cart";
 
 const store = configureStore({
   reducer: {
     show: showReducer,
     categorie: categorieReducer,
-    registerCheck: registerCheckReducer,
+    log: logReducer,
+    cart: cartReducer,
   },
 });
 

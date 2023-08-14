@@ -1,7 +1,23 @@
 .DetailContent {
   width: 900px;
-
   margin: auto;
+  text-align: start;
+  font-style: italic;
+  color: #a39f9f;
+}
 
-  text-align: center;
+.DetailContent h1,
+.DetailContent h2,
+.DetailContent h3,
+.DetailContent h4,
+.DetailContent h5,
+.productContent span {
+  color: black;
+}
+.detailFLex {
+  margin-top: 30px;
+  display: flex;
+  text-align: start;
+  gap: 50px;
+  margin-bottom: 50px;
 }

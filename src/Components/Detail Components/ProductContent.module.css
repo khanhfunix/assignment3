@@ -1,0 +1,64 @@
+.productContent h1 {
+  font-weight: 600;
+}
+.productContent h3 {
+  color: #a39f9f;
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.productContent p {
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.productContent span {
+  font-weight: 500;
+}
+
+.setQuantity {
+  display: flex;
+
+  align-items: center;
+}
+.optionQuantity {
+  border: 1px solid#a39f9f;
+  padding: 5px 15px 5px 15px;
+}
+.setQuantity h4 {
+  display: inline;
+  color: #a39f9f;
+  font-weight: lighter;
+  margin-right: 40px;
+}
+
+.setQuantity button {
+  background-color: inherit;
+  border: none;
+  font-size: inherit;
+}
+.setQuantity span {
+  font-style: normal;
+  margin: 0 3px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.mainBtn button {
+  height: 36px;
+  padding: 5px 15px 5px 15px;
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.mainBtn button:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
+.productContent span {
+  color: black;
+}

@@ -8,6 +8,7 @@
   justify-content: flex-start;
   gap: 180px;
   padding-left: 225px;
+  margin-top: 30px;
 }
 .footerList {
   line-height: 1.5;
