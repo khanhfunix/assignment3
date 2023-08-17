@@ -10,16 +10,12 @@ import ProductContent from "./ProductContent";
 import ProductDetail from "./ProductDetail";
 import RelatedProduct from "./RelatedProduct";
 
-const cartArr = localStorage.getItem("cart")
-  ? JSON.parse(localStorage.getItem("cart"))
-  : [];
-
 function Detail() {
   const [product, setProduct] = useState({});
   const [relatedProduct, setRelatedProduct] = useState([]);
   const [quantity, setQuantity] = useState(1);
 
-  const cartItem = useSelector((state) => state.cart.cartItem);
+  const cartRedux = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const id = useParams().productId;
@@ -71,18 +67,21 @@ function Detail() {
 
   const addCartHandler = () => {
     let newCart = {
+      image: product.img1,
       id: product._id.$oid,
       title: product.name,
       price: product.price,
       quantity,
-      totalPrice: quantity * product.price,
+      totalPrice: Number(product.price) * Number(quantity),
     };
-    console.log(newCart);
-    // dispatch(cartActions.addCart(newCart));
+    // console.log(typeof newCart.totalPrice, newCart.totalPrice);
+    dispatch(cartActions.addCart(newCart));
   };
-  console.log(213123);
+
   useEffect(() => {
     fetchProduct();
+
+    // localStorage.setItem("cart", JSON.stringify(cart));
   }, [id]);
 
   return (

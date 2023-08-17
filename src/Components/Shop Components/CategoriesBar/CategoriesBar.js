@@ -1,5 +1,6 @@
 import { categorieActions } from "../../../store/categorie";
 import { useDispatch } from "react-redux";
+import { useRef, useState } from "react";
 
 import classes from "./CategoriesBar.module.css";
 
@@ -8,27 +9,25 @@ const searchBar = [
     style: { color: "white", backgroundColor: "black" },
     title: "APPLE",
     item: ["All"],
-    isActive: false,
   },
   {
     title: "IPHONE & MAC",
     item: ["iphone", "ipad", "macbook"],
-    isActive: false,
   },
   {
     title: "WIRELESS",
     item: ["airpod", "watch"],
-    isActive: false,
   },
   {
     title: "OTHER",
     item: ["mouse", "keyboard", "other"],
-    isActive: false,
   },
 ];
 
 function CategoriesBar() {
   const dispatch = useDispatch();
+  const ref = useRef();
+  const [isActive, setIsActive] = useState("All");
 
   return (
     <div className={classes.categoriesBar}>
@@ -43,7 +42,10 @@ function CategoriesBar() {
                   <p
                     onClick={() => {
                       dispatch(categorieActions.setCategorie(i));
+                      setIsActive(i);
                     }}
+                    ref={ref}
+                    className={isActive === i ? classes.active : undefined}
                   >
                     {i}
                   </p>

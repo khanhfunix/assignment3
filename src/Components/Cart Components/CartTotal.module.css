@@ -1,0 +1,46 @@
+.CartTotal {
+  width: auto;
+  height: max-content;
+  background-color: #dff1f5;
+  padding: 20px 30px;
+}
+
+.CartTotalInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CartTotal h3,
+h4,
+h5 {
+  margin: 10px;
+}
+.CartTotal div:first-of-type {
+  border-bottom: 2px solid #a39f9f;
+}
+
+.form {
+  width: 220px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.form input {
+  width: 200px;
+  padding: 10px 10px;
+  border: 1px solid #a39f9f;
+}
+
+.form button {
+  width: 222px;
+  padding: 10px 10px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.form button:hover {
+  opacity: 80%;
+  cursor: pointer;
+}

@@ -1,0 +1,24 @@
+.option {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #dff1f5;
+  padding: 10px 20px;
+}
+.option button {
+  background-color: inherit;
+  font-style: italic;
+  padding: 10px 20px;
+  justify-items: center;
+}
+.option button:hover {
+  cursor: pointer;
+}
+
+.btnShop {
+  border: none;
+}
+
+.btnCheckOut {
+  border: 1px solid black;
+}

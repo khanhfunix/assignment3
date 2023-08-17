@@ -1,0 +1,15 @@
+.CartWrapper {
+  text-align: start;
+  font-style: italic;
+}
+
+.CartContent {
+  display: flex;
+  gap: 30px;
+  text-align: start;
+}
+
+.listContent {
+  width: 80%;
+  text-align: start;
+}

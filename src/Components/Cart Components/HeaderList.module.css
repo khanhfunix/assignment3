@@ -1,0 +1,14 @@
+.headerList {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 90px 120px 90px 90px 60px 70px;
+  justify-content: space-evenly;
+  background-color: #dff1f5;
+  padding: 20px 0 20px 10px;
+  font-weight: 500;
+  align-content: center;
+}
+
+.product {
+  align-self: end;
+}

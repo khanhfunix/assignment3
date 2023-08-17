@@ -16,8 +16,6 @@ let activeUser = localStorage.getItem("active")
 function NavBar() {
   const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.log.isLogged);
-  console.log(isLogged);
-  console.log(activeUser);
 
   const logoutHandler = () => {
     dispatch(logActions.logOut());
