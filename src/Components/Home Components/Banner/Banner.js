@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import classes from "./Banner.module.css";
 
 function Banner() {
+  // Banner component
   return (
     <div className={classes.banner}>
       <div className={classes.bannerContent}>

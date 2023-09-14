@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-
+// component custom hook su ducng reducer
 const initialInputState = {
   value: "",
   isTouched: false,

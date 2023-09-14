@@ -4,12 +4,13 @@ import classes from "./ProductList.module.css";
 import { useNavigate } from "react-router-dom";
 
 function ProductList() {
+  // component hien thi product
+  // khai bao state va navigate
   const [product, setProduct] = useState([]);
   const navigate = useNavigate();
-
+  // khai bao redux state
   const categorieSelected = useSelector((state) => state.categorie.categorie);
-
-  console.log(categorieSelected);
+  // ham fetch API
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -22,7 +23,7 @@ function ProductList() {
 
         const data = await response.json();
         setProduct(data);
-
+        // logic hien thi product theo categorie
         if (categorieSelected === "All") {
           setProduct(data);
         } else {

@@ -1,6 +1,7 @@
 import classes from "./HeaderList.module.css";
 
 function HeaderList() {
+  // component hien thi de muc cua gio hang
   return (
     <div className={classes.headerList}>
       <div>IMAGE</div>

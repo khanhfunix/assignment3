@@ -1,6 +1,7 @@
 import classes from "./ProductDetail.module.css";
 
 function ProductDetail({ product }) {
+  // component hien thi product detaiil
   const description = product.long_desc?.replace("•", "\n•") || "";
   return (
     <>

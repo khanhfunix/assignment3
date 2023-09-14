@@ -11,10 +11,23 @@
 
 .dummy h1 {
   margin-left: 40px;
-  
 }
 
-.dummy h2 {
+/* .dummy h2 {
   margin-right: 40px;
   color: #a39f9f;
+} */
+.dummy a {
+  text-decoration: none;
+}
+
+.link {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.dummy span {
+  margin: 0 10px;
+  font-weight: 600;
 }

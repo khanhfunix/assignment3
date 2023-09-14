@@ -1,10 +1,13 @@
 import classes from "./Dummy.module.css";
 
-function Dummy({ content }) {
+function Dummy({ content, link }) {
+  // component link giua cac trang
   return (
     <div className={classes.dummy}>
-      <h1>{content}</h1>
-      <h2>{content}</h2>
+      <div>
+        <h1>{content}</h1>
+      </div>
+      <div className={classes.link}>{link}</div>
     </div>
   );
 }

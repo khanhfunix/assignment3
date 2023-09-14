@@ -1,9 +1,9 @@
 import { categorieActions } from "../../../store/categorie";
 import { useDispatch } from "react-redux";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import classes from "./CategoriesBar.module.css";
-
+// dummy array de hien thi du lieu de dang hon
 const searchBar = [
   {
     style: { color: "white", backgroundColor: "black" },
@@ -25,8 +25,9 @@ const searchBar = [
 ];
 
 function CategoriesBar() {
+  // component hien thi filter
+  // khai bao state va action tu redux
   const dispatch = useDispatch();
-  const ref = useRef();
   const [isActive, setIsActive] = useState("All");
 
   return (
@@ -40,11 +41,11 @@ function CategoriesBar() {
               return (
                 <div key={i}>
                   <p
+                    // logic hien thi categorie active
                     onClick={() => {
                       dispatch(categorieActions.setCategorie(i));
                       setIsActive(i);
                     }}
-                    ref={ref}
                     className={isActive === i ? classes.active : undefined}
                   >
                     {i}

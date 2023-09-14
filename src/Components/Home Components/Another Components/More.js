@@ -1,6 +1,7 @@
 import classes from "./More.module.css";
 
 function More() {
+  // component dummy
   return (
     <div className={classes.more}>
       <div className={classes.moreAds}>

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGift } from "@fortawesome/free-solid-svg-icons";
 
 function CartTotal({ total }) {
+  // component hien thi don hang
   return (
     <div className={classes.CartTotal}>
       <h3>CART TOTAL</h3>

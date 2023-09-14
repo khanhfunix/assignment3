@@ -10,6 +10,7 @@ import ShopPage from "./pages/ShopPage";
 import RootLayout from "./pages/Root";
 
 function App() {
+  // Router Path toi cac Page
   const router = createBrowserRouter([
     {
       path: "/",

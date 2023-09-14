@@ -1,6 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-import { cartActions } from "../../store/cart";
 import CartItem from "./CartItem";
 import CartTotal from "./CartTotal";
 import HeaderList from "./HeaderList";
@@ -9,9 +8,10 @@ import OptionBar from "./OptionBar";
 import classes from "./Cart.module.css";
 
 function Cart() {
+  // Component chinh cua page Cart
+  // dung State redux de hien thi gio hang
   const cartItem = useSelector((state) => state.cart.cartItem);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
-  console.log(totalPrice);
   return (
     <div className={classes.CartWrapper}>
       <h1>Shopping Cart</h1>

@@ -8,12 +8,14 @@ import classes from "./Products.module.css";
 import PopUp from "./PopUp";
 
 function Products() {
+  // Component hien thi product o HomPage
+  // khai bao state
   const [products, setProduct] = useState([]);
   const [productPopUp, setProductPopUp] = useState({});
-
+  // khai bao dispatch action cua redex de hien thi pop up
   const dispatch = useDispatch();
   const isShowPopUp = useSelector((state) => state.show.isShowPopUp);
-
+  // function fetch API
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -38,7 +40,7 @@ function Products() {
     };
     fetchProduct();
   }, []);
-
+  // logic dong cua so opopup
   const closePopUp = () => {
     dispatch(showActions.notShowPopUp());
   };

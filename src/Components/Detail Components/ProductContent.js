@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
 import classes from "./ProductContent.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 function ProductContent({ product, onIncrease, onDecrease, quantity, onAdd }) {
+  // component hien thi detail cua product
   return (
     <div className={classes.productContent}>
       <h1>{product.name}</h1>

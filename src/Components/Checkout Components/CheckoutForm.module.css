@@ -1,0 +1,30 @@
+.checkoutForm {
+  width: 80%;
+  color: #a39f9f;
+}
+
+.checkoutForm h4 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.checkoutForm input {
+  width: 90%;
+  margin: 10px 0;
+  padding: 15px 15px;
+
+  border: 1px solid #a39f9f;
+}
+
+.checkoutForm button {
+  padding: 5px 20px;
+  color: #a39f9f;
+  background-color: black;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.checkoutForm button:hover {
+  cursor: pointer;
+  opacity: 50%;
+}

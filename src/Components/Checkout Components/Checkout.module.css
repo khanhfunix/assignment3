@@ -1,0 +1,9 @@
+.checkoutWrapper {
+  text-align: start;
+  font-style: italic;
+}
+
+.checkOut {
+  display: flex;
+  gap: 30px;
+}

@@ -9,13 +9,14 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logActions } from "../../store/userlog";
 
-let activeUser = localStorage.getItem("active")
-  ? JSON.parse(localStorage.getItem("active"))
-  : {};
-
 function NavBar() {
+  let activeUser = localStorage.getItem("active")
+    ? JSON.parse(localStorage.getItem("active"))
+    : {};
+
   const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.log.isLogged);
+  console.log(activeUser);
 
   const logoutHandler = () => {
     dispatch(logActions.logOut());
@@ -64,7 +65,7 @@ function NavBar() {
           <li className={classes.navItem}>
             {!isLogged && (
               <NavLink
-                to="/register"
+                to="/login"
                 className={({ isActive }) =>
                   isActive ? classes.active : undefined
                 }

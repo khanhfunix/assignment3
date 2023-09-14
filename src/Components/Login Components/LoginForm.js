@@ -7,36 +7,29 @@ import useInput from "../../hook/use-input";
 
 import classes from "./LoginForm.module.css";
 
-const userArr = localStorage.getItem("user")
-  ? JSON.parse(localStorage.getItem("user"))
-  : [];
-
-let activeUser = localStorage.getItem("active")
-  ? JSON.parse(localStorage.getItem("active"))
-  : {};
-
 function LoginForm() {
+  // component hien thi login form
+  // khai bao local storage
+  const userArr = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : [];
+
+  let activeUser = localStorage.getItem("active")
+    ? JSON.parse(localStorage.getItem("active"))
+    : {};
+
+  // khai bao action va naviga
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {
-    value: enteredEmail,
-    isValid: emailIsValid,
-    hasError: emailHasError,
-    valueChangeHandler: emailChangeHandler,
-    inputBlurHandler: emailBlurHandler,
-    reset: resetEmailInput,
-  } = useInput((value) => value);
-  const {
-    value: enteredPassword,
-    isValid: passwordIsValid,
-    hasError: passwordHasError,
-    valueChangeHandler: passwordChangeHandler,
-    inputBlurHandler: passwordBlurHandler,
-    reset: resetPasswordInput,
-  } = useInput((value) => value);
-
+  // dung customhiook useinput de handle form
+  const { value: enteredEmail, valueChangeHandler: emailChangeHandler } =
+    useInput((value) => value);
+  const { value: enteredPassword, valueChangeHandler: passwordChangeHandler } =
+    useInput((value) => value);
+  // logic sumbit form
   const formSubmitHandler = (event) => {
     event.preventDefault();
+    // logic check email passoowrd
     activeUser = userArr.find((e) => {
       return enteredPassword === e.password && enteredEmail === e.email;
     });

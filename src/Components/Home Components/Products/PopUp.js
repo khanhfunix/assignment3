@@ -10,10 +10,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const PopUp = ({ product, onClose }) => {
+  // component hien thi popup
+  // Khai bao ref, navigate va DIsPatch
   const ref = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  // logic click ra ngoai dong cua so popup
   const checkIfClickOutside = (e) => {
     if (ref.current && !ref.current.contains(e.target)) {
       onClose();
@@ -26,7 +28,7 @@ const PopUp = ({ product, onClose }) => {
       document.body.style.overflow = "auto";
     };
   }, []);
-
+  // Logic chuyen qua trang detail
   const toDetailHandler = () => {
     navigate(`/detail/${product._id.$oid}`);
     dispatch(showActions.notShowPopUp());

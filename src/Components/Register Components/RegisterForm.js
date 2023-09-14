@@ -1,17 +1,16 @@
-import { useEffect } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
 import classes from "./RegisterForm.module.css";
 
 import useInput from "../../hook/use-input";
 
-const userArr = localStorage.getItem("user")
-  ? JSON.parse(localStorage.getItem("user"))
-  : [];
-
 function RegisterForm() {
+  // component hien thi form dang ky
+  // kahi bao localstorage
+  const userArr = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : [];
   const navigate = useNavigate();
-
+  // Dung custom hook de handle form
   const {
     value: enteredName,
     isValid: nameIsValid,
@@ -46,16 +45,17 @@ function RegisterForm() {
   } = useInput((value) => value !== "");
 
   let formIsValid = false;
-
+  // dieu kien check form hop le
   if (nameIsValid && emailIsValid && passwordIsValid && phoneIsValid) {
     formIsValid = true;
   }
-  
+  // logic submit form
   const formSubmitHandler = (e) => {
     e.preventDefault();
     if (!formIsValid) {
       return;
     }
+    // logic check trung email
     for (let i = 0; i < userArr.length; i++) {
       if (enteredEmail === userArr[i].email) {
         window.alert("Email has been taken! Please choose another Email");
@@ -69,7 +69,6 @@ function RegisterForm() {
       phone: enteredPhone,
     };
     userArr.push(newUser);
-    console.log("userArr", userArr);
     localStorage.setItem("user", JSON.stringify(userArr));
     resetNameInput();
     resetEmailInput();

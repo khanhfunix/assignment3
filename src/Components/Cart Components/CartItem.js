@@ -12,11 +12,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function CartItem({ image, title, price, quantity, total, id }) {
+  // comonent hien thi gio hang
+  // khai bao state de hien thi gio hang
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
   const [currentTotal, setCurrentTotal] = useState(total);
-
+  // khai bao dispatch action
   const dispatch = useDispatch();
-
+  // logic tang so luong item
   const increaseQuantityHandler = () => {
     setCurrentQuantity((prev) => prev + 1);
     let newCart = {
@@ -30,7 +32,7 @@ function CartItem({ image, title, price, quantity, total, id }) {
 
     dispatch(cartActions.addCart(newCart));
   };
-
+  // logic giam so luong item
   const decreaseQuantityHandler = () => {
     setCurrentQuantity((prev) => {
       if (prev === 0) {
@@ -53,15 +55,19 @@ function CartItem({ image, title, price, quantity, total, id }) {
     };
     dispatch(cartActions.removeCart(newCart));
   };
-
+// logic xoa item
+  const removeItemHandler = () => {
+    dispatch(cartActions.deleteCartItem(id));
+  };
+// dung useEffect de hien thi totalPrice
   useEffect(() => {
     setCurrentTotal(price * currentQuantity);
-  }, [currentQuantity]);
+  }, [currentQuantity, price]);
 
   return (
     <div className={classes.CartItem}>
       <div className={classes.image}>
-        <img src={image} />
+        <img src={image} alt={title} />
       </div>
       <div className={classes.title}>{title}</div>
       <div className={classes.price}>
@@ -80,7 +86,7 @@ function CartItem({ image, title, price, quantity, total, id }) {
         <span>{Number(currentTotal).toLocaleString("de-DE")} VND</span>
       </div>
       <div className={classes.removeBtn}>
-        <button>
+        <button onClick={removeItemHandler}>
           <FontAwesomeIcon icon={faTrashCan} />
         </button>
       </div>

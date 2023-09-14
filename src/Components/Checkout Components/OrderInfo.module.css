@@ -1,0 +1,25 @@
+.OrderInfo {
+  width: auto;
+  height: max-content;
+  background-color: #dff1f5;
+  padding: 20px 30px;
+}
+
+.OrderInfoContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.OrderInfo h3,
+h4,
+h5 {
+  margin: 10px;
+  font-weight: 500;
+}
+.OrderInfo h5 {
+  color: #a39f9f;
+}
+.OrderInfo div {
+  border-bottom: 2px solid #a39f9f;
+}

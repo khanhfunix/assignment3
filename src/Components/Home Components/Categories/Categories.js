@@ -7,6 +7,7 @@ import p5 from "./product_5.png";
 import { Link } from "react-router-dom";
 
 function Categories() {
+  // component Categories
   return (
     <>
       <div className={classes.categoriesText}>
