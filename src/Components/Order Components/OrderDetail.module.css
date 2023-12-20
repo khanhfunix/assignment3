@@ -1,0 +1,34 @@
+.orderDetailWrapper {
+  margin-top: 50px;
+  min-height: 50vh;
+  font-style: italic;
+}
+
+.informationOrder {
+  text-align: left;
+}
+.informationOrder p {
+  color: #a39f9f;
+}
+.informationOrder h1 {
+  font-weight: 500;
+}
+
+.orderDetailWrapper th,
+.orderDetailWrapper td {
+  padding: 15px 15px 15px 5px;
+  text-align: center;
+}
+
+.orderDetailWrapper th {
+  background-color: #04aa6d;
+  color: white;
+}
+
+.orderDetailWrapper td {
+  color: #a39f9f;
+}
+
+.orderDetailWrapper tr:hover {
+  background-color: #f2f2f2;
+}

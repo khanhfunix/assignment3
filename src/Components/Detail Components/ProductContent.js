@@ -4,6 +4,7 @@ import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 function ProductContent({ product, onIncrease, onDecrease, quantity, onAdd }) {
   // component hien thi detail cua product
+
   return (
     <div className={classes.productContent}>
       <h1>{product.name}</h1>
@@ -12,6 +13,10 @@ function ProductContent({ product, onIncrease, onDecrease, quantity, onAdd }) {
       <p>
         <span>CATEGORY: </span>
         {product.category}
+      </p>
+      <p>
+        <span>Quantity available: </span>
+        {product.count}
       </p>
       <div className={classes.setQuantity}>
         <div className={classes.optionQuantity}>

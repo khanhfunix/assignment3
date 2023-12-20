@@ -8,6 +8,8 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ShopPage from "./pages/ShopPage";
 import RootLayout from "./pages/Root";
+import OrderPage from "./pages/OrderPage";
+import OrderDetailPage from "./pages/OrderDetailPage";
 
 function App() {
   // Router Path toi cac Page
@@ -24,6 +26,11 @@ function App() {
         { path: "login", element: <LoginPage /> },
         { path: "register", element: <RegisterPage /> },
         { path: "cart", element: <CartPage /> },
+        {
+          path: "order",
+          element: <OrderPage />,
+        },
+        { path: "/order/:orderid", element: <OrderDetailPage /> },
       ],
     },
 

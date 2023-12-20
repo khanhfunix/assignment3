@@ -12,6 +12,7 @@ function Cart() {
   // dung State redux de hien thi gio hang
   const cartItem = useSelector((state) => state.cart.cartItem);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
+
   return (
     <div className={classes.CartWrapper}>
       <h1>Shopping Cart</h1>
@@ -21,13 +22,14 @@ function Cart() {
           {cartItem.map((e) => {
             return (
               <CartItem
-                key={e.id}
+                key={e.productId}
                 image={e.image}
                 title={e.name}
                 price={e.price}
                 quantity={e.quantity}
                 total={e.totalPrice}
-                id={e.id}
+                id={e.productId}
+                count={e.count}
               />
             );
           })}

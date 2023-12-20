@@ -4,23 +4,20 @@ import {
   faCartShopping,
   faUser,
   faCaretDown,
+  faList,
 } from "@fortawesome/free-solid-svg-icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logActions } from "../../store/userlog";
+// import { redirect } from "react-router-dom";
 
 function NavBar() {
-  let activeUser = localStorage.getItem("active")
-    ? JSON.parse(localStorage.getItem("active"))
-    : {};
-
   const dispatch = useDispatch();
-  const isLogged = useSelector((state) => state.log.isLogged);
-  console.log(activeUser);
+  const currentUser = useSelector((state) => state.log);
 
   const logoutHandler = () => {
     dispatch(logActions.logOut());
-    localStorage.removeItem("active");
+    // redirect("/");
   };
 
   return (
@@ -63,7 +60,18 @@ function NavBar() {
             </NavLink>
           </li>
           <li className={classes.navItem}>
-            {!isLogged && (
+            <NavLink
+              to="/order"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              <FontAwesomeIcon icon={faList} />
+              <p>Order</p>
+            </NavLink>
+          </li>
+          <li className={classes.navItem}>
+            {currentUser.token === "" && (
               <NavLink
                 to="/login"
                 className={({ isActive }) =>
@@ -74,10 +82,10 @@ function NavBar() {
                 <p>Login</p>
               </NavLink>
             )}
-            {isLogged && (
+            {currentUser.token !== "" && (
               <div>
                 <FontAwesomeIcon icon={faUser} />
-                <p>{activeUser.name}</p>
+                <p>{currentUser.fullName}</p>
                 <FontAwesomeIcon icon={faCaretDown} />
                 <button onClick={logoutHandler}>( Logout )</button>
               </div>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import classes from "./PageContent.module.css";
 
 import Chat from "../UI/Chat/Chat";
+// component thuc hien logic hien thi chat
 function PageContent({ children }) {
   const [isShow, setIsShow] = useState(false);
   const showChatHandler = () => {

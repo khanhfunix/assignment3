@@ -10,10 +10,16 @@
 
 .checkoutForm input {
   width: 90%;
-  margin: 10px 0;
+  margin: 5px 0;
   padding: 15px 15px;
 
   border: 1px solid #a39f9f;
+}
+
+.checkoutForm input:focus {
+  outline: none;
+  border-color: #240370;
+  background-color: #e0d4fd;
 }
 
 .checkoutForm button {
@@ -22,9 +28,25 @@
   background-color: black;
   font-size: 18px;
   font-style: italic;
+  margin-top: 10px;
 }
 
 .checkoutForm button:hover {
   cursor: pointer;
   opacity: 50%;
+}
+
+.checkoutForm button:disabled,
+button[disabled],
+button:disabled:hover {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: default;
+  opacity: 100%;
+}
+
+.errorText {
+  color: red;
+  margin: 0;
 }

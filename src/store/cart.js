@@ -24,7 +24,7 @@ const cartSlice = createSlice({
       const newItem = action.payload;
 
       const existingItem = state.cartItem.find(
-        (item) => item.id === newItem.id
+        (item) => item.productId === newItem.id
       );
       state.totalQuantity++;
       if (existingItem) {
@@ -32,12 +32,13 @@ const cartSlice = createSlice({
         existingItem.totalPrice = existingItem.totalPrice + newItem.totalPrice;
       } else {
         state.cartItem.push({
-          id: newItem.id,
+          productId: newItem.id,
           image: newItem.image,
           price: newItem.price,
           quantity: newItem.quantity,
           totalPrice: newItem.totalPrice,
           name: newItem.title,
+          count: newItem.count,
         });
       }
 
@@ -48,7 +49,7 @@ const cartSlice = createSlice({
       const newItem = action.payload;
 
       const existingItem = state.cartItem.find(
-        (item) => item.id === newItem.id
+        (item) => item.productId === newItem.id
       );
       state.totalQuantity--;
       if (existingItem) {
@@ -61,12 +62,13 @@ const cartSlice = createSlice({
               existingItem.totalPrice + newItem.totalPrice);
       } else {
         state.cartItem.push({
-          id: newItem.id,
+          productId: newItem.id,
           image: newItem.image,
           price: newItem.price,
           quantity: newItem.quantity,
           totalPrice: newItem.totalPrice,
           name: newItem.title,
+          count: newItem.count,
         });
       }
       let tempoTotal = newItem.price * newItem.quantity;
@@ -79,11 +81,8 @@ const cartSlice = createSlice({
     },
     deleteCartItem(state, action) {
       const itemId = action.payload;
-      const idRemove = state.cartItem.findIndex((e) => e.id === itemId);
-      console.log(
-        state.totalPrice,
-        state.cartItem[idRemove].price * state.cartItem[idRemove].quantity
-      );
+      const idRemove = state.cartItem.findIndex((e) => e.productId === itemId);
+
       const totalCartPrice =
         state.cartItem[idRemove].price * state.cartItem[idRemove].quantity;
       state.totalPrice = state.totalPrice - totalCartPrice;

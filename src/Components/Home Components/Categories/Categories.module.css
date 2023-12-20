@@ -32,3 +32,24 @@
 .categoriesText h3 {
   margin: 0;
 }
+
+.imgCategory1 {
+  background-image: url(product_1.png);
+  background-size: 100%;
+}
+.imgCategory2 {
+  background-image: url(product_2.png);
+  background-size: 100%;
+}
+.imgCategory3 {
+  background-image: url(product_3.png);
+  background-size: 100%;
+}
+.imgCategory4 {
+  background-image: url(product_4.png);
+  background-size: 100%;
+}
+.imgCategory5 {
+  background-image: url(product_5.png);
+  background-size: 100%;
+}

@@ -1,7 +1,7 @@
 .PageContent {
-  width: 900px;
+  /* width: 900px; */
 
-  margin: auto;
+  margin: auto 210px;
 
   text-align: center;
   /* position: relative; */

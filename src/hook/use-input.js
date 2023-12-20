@@ -47,7 +47,7 @@ const useInput = (validateValue) => {
   const reset = () => {
     dispatch({ type: "RESET" });
   };
-  console.log();
+
   return {
     value: inputState.value,
     isValid: valueIsValid,

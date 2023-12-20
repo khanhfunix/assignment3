@@ -21,7 +21,7 @@ const PopUp = ({ product, onClose }) => {
       onClose();
     }
   };
-
+  console.log(product._id);
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -30,14 +30,14 @@ const PopUp = ({ product, onClose }) => {
   }, []);
   // Logic chuyen qua trang detail
   const toDetailHandler = () => {
-    navigate(`/detail/${product._id.$oid}`);
+    navigate(`/detail/${product._id}`);
     dispatch(showActions.notShowPopUp());
   };
 
   return ReactDOM.createPortal(
     <div className={classes.modalPopUp} onClick={checkIfClickOutside}>
       <div className={classes.popUp} ref={ref}>
-        <img src={product.img1} alt={product.name}></img>
+        <img src={product.images[0]} alt={product.name}></img>
         <div className={classes.popUpContent}>
           <h3>{product.name}</h3>
           <h5>{Number(product.price).toLocaleString("de-DE")}</h5>

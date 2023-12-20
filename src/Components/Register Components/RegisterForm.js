@@ -6,9 +6,9 @@ import useInput from "../../hook/use-input";
 function RegisterForm() {
   // component hien thi form dang ky
   // kahi bao localstorage
-  const userArr = localStorage.getItem("user")
-    ? JSON.parse(localStorage.getItem("user"))
-    : [];
+  // const userArr = localStorage.getItem("user")
+  //   ? JSON.parse(localStorage.getItem("user"))
+  //   : [];
   const navigate = useNavigate();
   // Dung custom hook de handle form
   const {
@@ -55,26 +55,53 @@ function RegisterForm() {
     if (!formIsValid) {
       return;
     }
-    // logic check trung email
-    for (let i = 0; i < userArr.length; i++) {
-      if (enteredEmail === userArr[i].email) {
-        window.alert("Email has been taken! Please choose another Email");
+
+    const fetchCreateUser = async function () {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_ENDPOINT}user/signup`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fullName: enteredName,
+            email: enteredEmail,
+            password: enteredPassword,
+            phoneNumber: enteredPhone,
+            type: "USER",
+          }),
+        }
+      );
+
+      if (response.status === 422) {
+        window.alert("Email existed. Please use another Email!!!");
         return;
       }
-    }
-    let newUser = {
-      name: enteredName,
-      email: enteredEmail,
-      password: enteredPassword,
-      phone: enteredPhone,
+      if (response.status !== 201 && response.status !== 200) {
+        window.alert("Validation failed. Please re-enter value");
+        return;
+      }
+
+      const data = await response.json();
+
+      window.alert(data.message);
+      navigate("/login");
     };
-    userArr.push(newUser);
-    localStorage.setItem("user", JSON.stringify(userArr));
-    resetNameInput();
-    resetEmailInput();
-    resetPasswordInput();
-    resetPhoneInput();
-    navigate("/login");
+    fetchCreateUser();
+    // let newUser = {
+    //   name: enteredName,
+    //   email: enteredEmail,
+    //   password: enteredPassword,
+    //   phone: enteredPhone,
+    // };
+    // userArr.push(newUser);
+    // localStorage.setItem("user", JSON.stringify(userArr));
+    // resetNameInput();
+    // resetEmailInput();
+    // resetPasswordInput();
+    // resetPhoneInput();
+    // navigate("/login");
   };
 
   return (

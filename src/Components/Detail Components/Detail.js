@@ -14,43 +14,31 @@ function Detail() {
   // Component chinh de hien thi Detail Page
   // Khai bao  hook useState de hien thi noi dung trang
   const [product, setProduct] = useState({});
-  const [relatedProduct, setRelatedProduct] = useState([]);
+  const [relatedCategory, setRelatedCategory] = useState("");
   const [quantity, setQuantity] = useState(1);
   // khai bao dispatch action
   const dispatch = useDispatch();
   // khai bao id de so sanh ( dung useParams)
   const id = useParams().productId;
+
   // khai bao useNavigate
   const navigate = useNavigate();
   // fetch API de lay du lieu
   const fetchProduct = async () => {
     try {
+      console.log(process.env);
       const response = await fetch(
-        "https://firebasestorage.googleapis.com/v0/b/funix-subtitle.appspot.com/o/Boutique_products.json?alt=media&token=dc67a5ea-e3e0-479e-9eaf-5e01bcd09c74"
+        `${process.env.REACT_APP_API_ENDPOINT}product/` + id
       );
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
+      if (response.status !== 200) {
+        window.alert("Something went wrong!");
       }
-      let productCategory;
-      let newRealatedProduct = [];
 
       const data = await response.json();
+
       // set product logic
-      for (let i = 0; i < data.length; i++) {
-        if (id === data[i]._id.$oid) {
-          setProduct(data[i]);
-          productCategory = data[i].category;
-        }
-      }
-      // logic setRelatedProduct
-      for (let i = 0; i < data.length; i++) {
-        if (productCategory === data[i].category) {
-          newRealatedProduct.push(data[i]);
-        }
-      }
-      const itemRemove = newRealatedProduct.findIndex((e) => e._id.$oid === id);
-      newRealatedProduct.splice(itemRemove, 1);
-      setRelatedProduct(newRealatedProduct);
+      setProduct(data.result);
+      setRelatedCategory(data.result.category);
     } catch (error) {
       console.log(error);
     }
@@ -74,11 +62,18 @@ function Detail() {
     if (quantity === 0) {
       return;
     }
+    if (quantity > product.count) {
+      window.alert(
+        "Not enough product. Please wait until we refill the store or choose another product. Sorry for the inconvinence!!!"
+      );
+      return;
+    }
     let newCart = {
-      image: product.img1,
-      id: product._id.$oid,
+      image: product.images[0],
+      id: product._id,
       title: product.name,
       price: product.price,
+      count: product.count,
       quantity,
       totalPrice: Number(product.price) * Number(quantity),
     };
@@ -104,7 +99,7 @@ function Detail() {
       </div>
       <ProductDetail product={product} />
       <RelatedProduct
-        relatedProduct={relatedProduct}
+        relatedCategory={relatedCategory}
         navigate={navigate}
         setQuantity={setQuantity}
         id={id}

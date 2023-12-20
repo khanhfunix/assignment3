@@ -20,20 +20,20 @@ function Products() {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          "https://firebasestorage.googleapis.com/v0/b/funix-subtitle.appspot.com/o/Boutique_products.json?alt=media&token=dc67a5ea-e3e0-479e-9eaf-5e01bcd09c74"
+          `${process.env.REACT_APP_API_ENDPOINT}product`
         );
-        if (!response.ok) {
-          throw new Error("Something went wrong!");
+        if (response.status !== 200) {
+          window.alert("Failed to get products");
         }
 
         const data = await response.json();
 
-        for (let i = 0; i < data.length; i++) {
-          if (data.length > 8) {
-            data.pop();
+        for (let i = 0; i < data.result.length; i++) {
+          if (data.result.length > 8) {
+            data.result.pop();
           }
         }
-        setProduct(data);
+        setProduct(data.result);
       } catch (error) {
         console.log(error);
       }
@@ -58,15 +58,15 @@ function Products() {
               <div
                 onClick={() => {
                   dispatch(showActions.showPopUp());
-                  console.log(isShowPopUp);
+
                   setProductPopUp(p);
                 }}
                 className={classes.productsItem}
-                key={p._id.$oid}
+                key={p._id}
               >
                 <img
                   className={classes.productImg}
-                  src={p.img1}
+                  src={p.images[0]}
                   alt={p.name}
                 ></img>
                 <h3>{p.name}</h3>

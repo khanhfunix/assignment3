@@ -1,5 +1,5 @@
 import classes from "./Footer.module.css";
-
+// tao data de hien thi footer
 const DUMMY_DATA = [
   {
     title: "CUSTOMERS SERVICE",
@@ -19,6 +19,7 @@ const DUMMY_DATA = [
     link: ["Twitter", "Instagram", "Facebook", "Pinterest"],
   },
 ];
+// component footer
 function Footer() {
   return (
     <footer className={classes.footer}>

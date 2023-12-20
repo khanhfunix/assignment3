@@ -1,7 +1,7 @@
 .header {
-  width: 900px;
+  /* width: 900px; */
   height: 70px;
-  margin: auto;
+  margin: auto 220px;
   display: flex;
   background-color: white;
   font-style: italic;

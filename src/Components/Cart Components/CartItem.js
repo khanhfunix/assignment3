@@ -11,7 +11,7 @@ import {
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 
-function CartItem({ image, title, price, quantity, total, id }) {
+function CartItem({ image, title, price, quantity, total, id, count }) {
   // comonent hien thi gio hang
   // khai bao state de hien thi gio hang
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
@@ -20,6 +20,12 @@ function CartItem({ image, title, price, quantity, total, id }) {
   const dispatch = useDispatch();
   // logic tang so luong item
   const increaseQuantityHandler = () => {
+    if (currentQuantity >= count) {
+      window.alert(
+        "Not enough product. Please wait until we refill the store or choose another product. Sorry for the inconvinence!!!"
+      );
+      return;
+    }
     setCurrentQuantity((prev) => prev + 1);
     let newCart = {
       image: image,
@@ -28,7 +34,9 @@ function CartItem({ image, title, price, quantity, total, id }) {
       price: price,
       quantity: 1,
       totalPrice: currentTotal,
+      count: count,
     };
+    console.log(id);
 
     dispatch(cartActions.addCart(newCart));
   };
@@ -52,14 +60,15 @@ function CartItem({ image, title, price, quantity, total, id }) {
       price: price,
       quantity: 1,
       totalPrice: currentTotal,
+      count: count,
     };
     dispatch(cartActions.removeCart(newCart));
   };
-// logic xoa item
+  // logic xoa item
   const removeItemHandler = () => {
     dispatch(cartActions.deleteCartItem(id));
   };
-// dung useEffect de hien thi totalPrice
+  // dung useEffect de hien thi totalPrice
   useEffect(() => {
     setCurrentTotal(price * currentQuantity);
   }, [currentQuantity, price]);
